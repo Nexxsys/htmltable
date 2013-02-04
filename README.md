@@ -1,7 +1,12 @@
 htmltable.py
 ============
 
-A small HTML parser to extract tables from HTML files.
+A small Python HTML parser to extract tables from HTML files.
+
+## Features
+
+* Extracts all tables from an HTML file. Nested tables (tables in a table) are also supported
+* Flattens HTML tables into plain-text tables
 
 ## Usage
 
@@ -14,4 +19,4 @@ A small HTML parser to extract tables from HTML files.
 ## Notes
 
 * There is no external dependency. It works with the standard Python library.
-* It may incorrectly work against HTML files.
+* It may incorrectly work against broken HTML files.
