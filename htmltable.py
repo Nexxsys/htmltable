@@ -25,7 +25,7 @@ class HTMLTableExtractor(HTMLParser):
     def handle_starttag(self, tag, attrs):
         if self.state == self.STATE_IN_CELL:
             self.cell_data += '<%s %s>' % (tag, 
-                    ' '.join(['%s=%s' % (name, value) for name, value in attrs]))
+                    ' '.join(['%s="%s"' % (str(name), str(value)) for name, value in attrs]))
             if tag == 'table':
                 self.depth += 1
         elif tag == 'table':
@@ -68,9 +68,10 @@ class HTMLTableExtractor(HTMLParser):
             self.cell_data += data
 
     def get_tables(self, html):
+        self.state = self.STATE_OUTTER
         self.tables = []
         self.depth = 0
-        self.state = self.STATE_OUTTER
+        self.cell_data = ''
 
         self.feed(html)
         return self.tables
